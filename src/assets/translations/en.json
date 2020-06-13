@@ -1,0 +1,33 @@
+{
+	"header": {
+		"sorting": "Sorting",
+        "view": "View",
+        "language": "Language",
+        "favourites": "favorites",
+		"theme-picker": "Theme picker",
+		"search": "Search",
+		"sort_type": {
+			"id": "ID",
+			"name": "Name",
+			"age": "Age",
+			"asc": "By ascending",
+			"desc": "By descending"
+		},
+		"view_type": {
+			"table": "Table",
+			"preview": "Preview"
+		},
+		"language_type": {
+			"ru": "РУ",
+			"en": "ENG"
+		}
+    },
+	"main": {
+        "age_type": {
+			"year": "year",
+			"year1": "years",
+			"years": "years"
+		}
+    }
+
+}

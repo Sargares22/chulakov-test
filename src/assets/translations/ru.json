@@ -1,0 +1,33 @@
+{
+	"header": {
+		"sorting": "Сортировка",
+        "view": "Вид",
+        "language": "Язык",
+        "favourites": "Избранное",
+		"theme-picker": "Выбор темы",
+		"search": "Поиск",
+		"sort_type": {
+			"id": "ID",
+			"name": "Имя",
+			"age": "Возраст",
+			"asc": "По возрастанию",
+			"desc": "По убыванию"
+		},
+		"view_type": {
+			"table": "Таблица",
+			"preview": "Превью"
+		},
+		"language_type": {
+			"ru": "РУ",
+			"en": "ENG"
+		}
+    },
+	"main": {
+        "age_type": {
+			"year": "год",
+			"year1": "года",
+			"years": "лет"
+		}
+    }
+
+}

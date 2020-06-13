@@ -1,0 +1,404 @@
+*
+	margin: 0
+	padding: 0
+button
+	background-color: unset
+	
+.container
+	max-width: 1280px
+	margin: 0 auto
+
+header
+	margin-bottom: 40px
+	.container
+		display: grid
+		// grid-template-columns: 1.5fr 1fr .3fr .3fr .5fr
+		grid-template-areas: "filters filters filters display display lang favourites picker" "filters filters filters display display search search search"
+
+		grid-gap: 2%
+		.filters, .display, .change-lang, .favourites, .theme-picker, .search
+			&__title
+				text-align: center
+				// text-decoration: 
+			.btn-group
+				display: grid
+				grid-template-columns: 1fr 1fr 1fr
+				grid-template-rows: 40px
+				margin-top: 20px
+				&.sort, &.display, &.change-lang
+					grid-template-columns: 1fr 1fr
+				&.display
+					grid-template-rows: 100px
+				&.change-lang
+					.btn-group__item
+						display: grid
+						justify-content: center
+						align-items: center
+				&__item
+					border: 1px solid #000000
+					text-transform: capitalize
+					&.active
+						background-color: #e6e6e6
+					&:hover
+						background-color: #e9e9e9
+					&:not(:last-child)
+						border-right: none
+		.favourites
+			display: grid
+			grid-template-rows: min-content 40px
+			grid-gap: 20px
+			.favourites__btn
+				border: 1px solid #000000
+				text-transform: capitalize
+				display: flex
+				justify-content: center
+				align-items: center
+				&.active
+					background-color: #e6e6e6
+				&:hover
+					background-color: #e9e9e9
+				&:not(:last-child)
+					border-right: none						
+		.theme-picker
+			.btn-group__item
+				position: relative
+				&.active
+					background-color: darken(#e6e6e6, 20%)
+				&.grey
+					&:before
+						background-color: #e6e6e6
+				&.red
+					&:before
+						background-color: red
+				&.green
+					&:before
+						background-color: green
+				&:before
+					content: ''
+					position: absolute
+					top: 5px
+					left: 5px
+					bottom: 5px
+					right: 5px
+					border: 1px solid #000
+		.search
+			input
+				width: 100%
+				height: 30px
+				font-size: 22px
+				border: 1px solid #000000
+
+		.filters
+			grid-area: filters
+		.display
+			grid-area: display
+		.change-lang
+			grid-area: lang
+		.favourites
+			grid-area: favourites
+		.theme-picker
+			grid-area: picker
+		.search
+			grid-area: search	
+
+
+.main-data 
+	// overflow: hidden
+	margin-bottom: 40px
+	.main-data
+		&__text-block
+			font-size: 22px
+		&__item, &__text-block
+			display: grid
+		&__item
+			opacity: 0
+			&.fadeIn
+				animation: fadeIn 1s
+				animation-fill-mode: forwards
+				// animation-delay: 50ms
+
+		&__icon
+			height: 60px
+			width: 60px
+			border-radius: 50%
+			margin: 0 auto	
+	&::-webkit-scrollbar 
+		width: 0px
+		background: transparent	
+	&.table
+		box-shadow: 0 6px 5px -4px grey
+		.main-data
+			&__video, &__phrase
+				display: none
+			&__item
+				background-color: #fafafa
+				&:not(:last-child)
+					border-bottom: 1px solid #cecece
+			&__text-block
+				grid-template-columns: .3fr 1fr .7fr 1fr .2fr
+				align-items: center
+				padding: 20px 0 20px
+	&.preview
+		display: grid
+		grid-template-columns: 1fr 1fr
+		grid-auto-rows: 350px
+		grid-gap: 20px
+		grid-auto-flow: dense
+		.main-data
+			&__item
+				grid-template-columns: 1fr
+				box-shadow: 0px 2px 5px 1px grey
+				grid-column: auto / span 1
+				// overflow: hidden
+				.main-data
+					&__text-block
+						font-size: 22px
+						padding: 15px 20px 20px 30px
+						grid-template-areas: "icon name name star" "age age age age" "phone phone phone phone" "phrase phrase phrase ."
+						grid-template-columns: .7fr 2fr 2fr .5fr
+						align-items: center
+				&.video
+					grid-template-columns: 1fr 1fr
+					grid-column: auto / span 2
+					.main-data__video
+						display: block	
+						position: relative
+						box-shadow: -8px 0px 8px 0px #d0cece
+						video
+							object-fit: fill
+							position: absolute
+							width: 100%
+							height: 100%			
+				&:nth-child(4)
+					background-color: #fff
+			&__icon
+				grid-area: icon
+				margin: 0
+			&__name
+				grid-area: name
+			&__age
+				grid-area: age
+				color: #777777
+			&__phone
+				grid-area: phone
+			&__star
+				grid-area: star
+				display: grid
+			&__phrase
+				grid-area: phrase
+
+
+		
+.post-enter, .post-appear, .post-exit-active
+	opacity: 0
+	// visibility: hidden
+	transform: translateY(-100px)
+	// z-index: 0
+	transition: all 500ms
+	// display: none
+	// transition-delay: 0.2s
+	
+.post-enter-active, .post-appear-active
+	opacity: 1
+	// visibility: hidden
+	transform: translateY(0)
+	transition: all 500ms
+.post-enter-done, .post-appear-done
+	// opacity: 1
+	// visibility: visible
+
+.block-enter
+	opacity: 0
+	visibility: hidden
+.block-enter-active
+	opacity: 1
+	visibility: hidden
+	transition: all 500ms
+.block-enter-done
+	visibility: visible
+
+
+
+// .post-exit
+// 	opacity: 1
+
+// .post-exit-active
+// 	opacity: 0
+// 	transition: opacity 100ms
+
+
+	
+
+//star
+
+.star
+	&.active
+		border-bottom: .7em solid #000
+		&:before, &:after
+			border-bottom: .7em  solid #000
+	position: relative
+	display: inline-block
+	width: 0
+	height: 0
+	margin-left: .7em
+	margin-right: .7em
+	margin-bottom: 1em
+	border-right:  .3em solid transparent
+	border-bottom: .7em  solid #cccccc
+	border-left:   .3em solid transparent
+	font-size: 13px
+	cursor: pointer
+	&:hover
+		border-bottom: .7em solid #444343
+		&:before, &:after
+			border-bottom: .7em  solid #444343
+	&:before, &:after
+		content: ''
+		
+		display: block
+		width: 0
+		height: 0
+		
+		position: absolute
+		top: .6em
+		left: -1em
+		
+		border-right:  1em solid transparent
+		border-bottom: .7em  solid #cccccc
+		border-left:   1em solid transparent
+		
+		transform: rotate(-35deg)
+	
+	&:after  
+		transform: rotate(35deg)
+//spinner
+.spinner
+	div
+		box-sizing: border-box !important
+
+	> div
+		position: absolute
+		width: 176px
+		height: 176px
+		top: 12px
+		left: 12px
+		border-radius: 50%
+		border: 16px solid #000
+		border-color: #e15b64 transparent #e15b64 transparent
+		animation: spinner 1s linear infinite
+
+		&:nth-child(2), &:nth-child(4)
+			width: 140px
+			height: 140px
+			top: 30px
+			left: 30px
+			animation: spinner 1s linear infinite reverse
+
+		&:nth-child(2)
+			border-color: transparent #f8b26a transparent #f8b26a
+
+		&:nth-child(3)
+			border-color: transparent
+
+			div
+				position: absolute
+				width: 100%
+				height: 100%
+				transform: rotate(45deg)
+
+				&:before
+					content: ""
+					display: block
+					position: absolute
+					width: 16px
+					height: 16px
+					top: -16px
+					left: 64px
+					background: #e15b64
+					border-radius: 50%
+					box-shadow: 0 160px 0 0 #e15b64
+
+				&:after
+					content: ""
+					display: block
+					position: absolute
+					width: 16px
+					height: 16px
+					top: -16px
+					left: 64px
+					background: #e15b64
+					border-radius: 50%
+					box-shadow: 0 160px 0 0 #e15b64
+					left: -16px
+					top: 64px
+					box-shadow: 160px 0 0 0 #e15b64
+
+		&:nth-child(4)
+			border-color: transparent
+
+			div
+				position: absolute
+				width: 100%
+				height: 100%
+				transform: rotate(45deg)
+
+				&:before
+					content: ""
+					display: block
+					position: absolute
+					width: 16px
+					height: 16px
+					top: -16px
+					left: 46px
+					background: #f8b26a
+					border-radius: 50%
+					box-shadow: 0 124px 0 0 #f8b26a
+	
+				&:after
+					content: ""
+					display: block
+					position: absolute
+					width: 16px
+					height: 16px
+					top: -16px
+					left: 46px
+					background: #f8b26a
+					border-radius: 50%
+					box-shadow: 0 124px 0 0 #f8b26a
+					left: -16px
+					top: 46px
+					box-shadow: 124px 0 0 0 #f8b26a
+.spinner-second
+	width: 200px
+	height: 200px
+	display: block
+	overflow: hidden
+	background: #ffffff
+	margin: 0 auto
+.spinner
+	width: 100%
+	height: 100%
+	position: relative
+	transform: translateZ(0) scale(1)
+	backface-visibility: hidden
+	transform-origin: 0 0
+	div
+		box-sizing: content-box
+@keyframes spinner
+	0%
+		transform: rotate(0)
+	100%
+		transform: rotate(360deg)
+@keyframes fadeIn
+	0%
+		opacity: 00
+		transform: translateY(-40px)
+	// 50%
+	// 	opacity: 0
+	// 	transform: translateY(-20px)
+	// 75%
+	// 	opacity: 0.5
+	// 	transform: translateY(-10px)
+	100%
+		opacity: 1
+		transform: translateY(0)
