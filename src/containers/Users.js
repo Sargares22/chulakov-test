@@ -25,7 +25,6 @@ export const Users = () => {
 	const toggleFavourite = (data, favourite) => {
 		favourite || false ? dispatch(removeFavourite(data.id)) : dispatch(addFavourite({ ...data, favourite: true }));
 	}	
-	console.log(userList);
 	
 
 	useEffect(() => {
@@ -34,6 +33,7 @@ export const Users = () => {
 			observeVideos();
 		}
 	}, [userList, observeList, observeVideos]);
+	
 
 	return (
 		<>

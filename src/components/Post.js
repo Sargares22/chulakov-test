@@ -1,18 +1,12 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 
-import * as icons from '../helpers/exportSvg'
-import boy from '../assets/videos/boy.mp4'
-import shoe from '../assets/videos/shoe.mp4'
 import { translateAge } from '../helpers/functions';
-// import images from "../assets/images/*.svg";
 
-// let gridRow = -1
 
 export default React.memo(({data, viewType, ind, toggleFavourite}) => {
 
 	const {favourite, age, image, name, phone, phrase, video } = data
-	const Icon = icons[image]
 	const isPreview = viewType === 'preview'
 	const { t } = useTranslation();
 	
@@ -25,7 +19,7 @@ export default React.memo(({data, viewType, ind, toggleFavourite}) => {
 			>
 				<div className="main-data__text-block">
 					<div className="main-data__icon">
-						<Icon />
+						<img src={`/images/${image}.svg`} alt="image" />
 					</div>
 					<div className="main-data__name">{name}</div>
 					<div className="main-data__age">{age} {t(`main.age_type.${translateAge(age)}`)}</div>
@@ -36,7 +30,7 @@ export default React.memo(({data, viewType, ind, toggleFavourite}) => {
 
 				{isPreview && video && <div className="main-data__video">
 					<video controls preload={'none'} loop >
-						<source src={video === 'boy' ? boy : shoe} type="video/mp4" />
+						<source src={`/videos/${video}.mp4`} type="video/mp4" />
 					</video>
 				</div>}
 			</li>

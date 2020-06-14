@@ -22,8 +22,6 @@ export const Header = () => {
 	const changeLang = (value) => dispatch(changeLanguage(value))
 
 
-	console.log(123);
-
 	return (
 		<header className="header">
 			<div className="container">

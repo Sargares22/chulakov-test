@@ -4,7 +4,7 @@ import { FETCH_DATA, DATA_LOADING, GRID_ROW_COUNTER, SORTING_BY, CHANGE_LANGUAGE
 const fetchedData = new Promise((resolve) => {
 	setTimeout(() => {
 		resolve(data)
-	}, 500)
+	}, 300)
 })
 
 
