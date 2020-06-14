@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b991f7e6214f45b01c6f081658ca2a9e",
+    "revision": "ae2c257e83b1293ac5f68aa1aa125e6c",
     "url": "/chulakov-test/index.html"
   },
   {
-    "revision": "49f5fce2748c3d3f4c67",
+    "revision": "7d1d1a62f126808f7810",
     "url": "/chulakov-test/static/css/main.50101c92.chunk.css"
   },
   {
-    "revision": "722039623892c78db80f",
-    "url": "/chulakov-test/static/js/2.9521e2dd.chunk.js"
+    "revision": "6f5c8e83002020d196b7",
+    "url": "/chulakov-test/static/js/2.e1e35f32.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/chulakov-test/static/js/2.9521e2dd.chunk.js.LICENSE.txt"
+    "url": "/chulakov-test/static/js/2.e1e35f32.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "49f5fce2748c3d3f4c67",
-    "url": "/chulakov-test/static/js/main.fb266e94.chunk.js"
+    "revision": "7d1d1a62f126808f7810",
+    "url": "/chulakov-test/static/js/main.c4357245.chunk.js"
   },
   {
     "revision": "bcec2393a6fb55daac89",
