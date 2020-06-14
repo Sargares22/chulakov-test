@@ -1,4 +1,4 @@
-import { GRID_ROW_COUNTER, SORTING_BY, CHANGE_LANGUAGE, SEARCH_BY, CHANGE_DATA_DISPLAY} from "../types";
+import { SORTING_BY, CHANGE_LANGUAGE, SEARCH_BY, CHANGE_DATA_DISPLAY} from "../types";
 import { getValueFromUrl } from "../../helpers/functions";
 
 const sortingType = getValueFromUrl('sortingType')
@@ -14,7 +14,6 @@ const initState = {
 		sortingOrder: sortingOrder ? sortingOrder : 'asc'
 	},
 	language: 'ru',
-	gridRow: -1,
 	searchString: searchString ? searchString : '',
 }
 
@@ -35,9 +34,6 @@ export const app = (state = initState, action) => {
 				sorting: action.payload
 			};
 
-		case GRID_ROW_COUNTER:
-			return {...state, gridRow: state.gridRow + 2}
-		
 		case CHANGE_DATA_DISPLAY:
 			return {...state, viewType: action.payload.viewType}
 		default: return state

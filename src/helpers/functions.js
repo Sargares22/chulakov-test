@@ -38,7 +38,7 @@ export const fuseSearch = (data, searchString) => {
 	let fuse = new Fuse(data, {
 		// minMatchCharLength: 3,
 		useExtendedSearch: true,
-		threshold: 0.3,
+		threshold: 0.25,
 		shouldSort: false,
 		keys: ["name"]
 	});

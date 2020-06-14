@@ -7,7 +7,7 @@ const getSorting = state => state.app.sorting
 const getSearch = state => state.app.searchString
 
 export const sortAndFilter = createSelector(
-	[getUsers, getSorting,getSearch],
+	[getUsers, getSorting, getSearch],
 	(users, {sortingType, sortingOrder}, searchString) => {
 		
 		let data = sortingByType(users, sortingType);

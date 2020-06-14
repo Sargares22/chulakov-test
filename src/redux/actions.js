@@ -1,5 +1,5 @@
 import data from '../assets/data'
-import { FETCH_DATA, DATA_LOADING, GRID_ROW_COUNTER, SORTING_BY, CHANGE_LANGUAGE, SEARCH_BY, CHANGE_DATA_DISPLAY, INIT_FAVOURITES, REMOVE_FAVOURITE, ADD_FAVOURITE, TOGGLE_FAVOURITE_PROPERTY } from './types';
+import { FETCH_DATA, DATA_LOADING, SORTING_BY, CHANGE_LANGUAGE, SEARCH_BY, CHANGE_DATA_DISPLAY, INIT_FAVOURITES, REMOVE_FAVOURITE, ADD_FAVOURITE, TOGGLE_FAVOURITE_PROPERTY } from './types';
 
 const fetchedData = new Promise((resolve) => {
 	setTimeout(() => {
@@ -7,6 +7,16 @@ const fetchedData = new Promise((resolve) => {
 	}, 300)
 })
 
+
+export const fetchData = () => dispatch => {
+	dispatch(showLoader())
+	fetchedData
+		.then(data => {
+			dispatch({type: FETCH_DATA, payload: data})
+			let favourites = data.filter(item => item.favourite)
+			dispatch({type: INIT_FAVOURITES, payload: favourites})
+		})
+}
 
 export function showLoader() {
 	return {
@@ -21,11 +31,6 @@ export function changeDataDisplay(type) {
 		payload: {
 			viewType: type
 		}
-	}
-}
-export function gridRowCounter() {
-	return {
-		type: GRID_ROW_COUNTER
 	}
 }
 export const sortingBy = (type, order = 'asc') => {
@@ -74,12 +79,3 @@ export const removeFavourite = id => dispatch => {
 	
 }
 
-export const fetchData = () => dispatch => {
-	dispatch(showLoader())
-	fetchedData
-		.then(data => {
-			dispatch({type: FETCH_DATA, payload: data})
-			let favourites = data.filter(item => item.favourite)
-			dispatch({type: INIT_FAVOURITES, payload: favourites})
-		})
-}

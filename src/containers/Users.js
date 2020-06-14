@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 
 import Post from '../components/Post';
 import { Loader } from '../components/Loader';
-import { sortAndFilter } from '../selectors';
 import { useListObserver, useVideoObserver } from '../hooks';
 import { addFavourite, removeFavourite } from '../redux/actions';
+import { sortAndFilter } from '../selectors';
 
 export const Users = () => {
 
@@ -25,7 +25,6 @@ export const Users = () => {
 	const toggleFavourite = (data, favourite) => {
 		favourite || false ? dispatch(removeFavourite(data.id)) : dispatch(addFavourite({ ...data, favourite: true }));
 	}	
-	
 
 	useEffect(() => {
 		if (userList.length) {
@@ -33,7 +32,6 @@ export const Users = () => {
 			observeVideos();
 		}
 	}, [userList, observeList, observeVideos]);
-	
 
 	return (
 		<>

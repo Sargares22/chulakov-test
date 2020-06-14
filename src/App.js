@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch, Redirect } from 'react-router'
+import { Route, Switch } from 'react-router'
 import {useDispatch} from 'react-redux'
 
 import { Header } from './containers/Header';
