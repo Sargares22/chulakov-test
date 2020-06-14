@@ -8,6 +8,7 @@ export const useListObserver = (containerId, viewType) => {
 		const newObserver = new IntersectionObserver((entries) => {
 	
 			entries.forEach((entry) => {
+				
 				if(entry.isIntersecting){
 					entry.target.classList.add('fadeIn');
 				}
@@ -52,7 +53,7 @@ export const useVideoObserver = (containerId) => {
 				entry.target.pause();
 			});
 		}, {
-			rootMargin: '-45% 0% -45% 0%',
+			rootMargin: '-40% 0% -40% 0%',
 			threshold: 0
 		});
 		setObserver(newObserver);

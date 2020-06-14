@@ -1,8 +1,7 @@
-import { TOGGLE_FAVOURITE_PROPERTY, FETCH_DATA, DATA_LOADING, CHANGE_CURRENT_PLAY } from "../types";
+import { TOGGLE_FAVOURITE_PROPERTY, FETCH_DATA, DATA_LOADING } from "../types";
 
 const initState = {
 	data: [],
-	loading: false,
 }
 
 export const users = (state = initState, action) => {

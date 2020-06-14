@@ -1,15 +1,8 @@
-import React from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React from 'react';
 
-import { searchBy } from '../../redux/actions';
-
-
-export const HeaderSearch = () => {
-
-	const dispatch = useDispatch();
-	const inputValue = useSelector(({app}) => app.searchedString)
+export const HeaderSearch = ({searchString, handleSearchInput}) => {
 	
 	return (
-		<input onChange={e => dispatch(searchBy(e.target.value))} value={inputValue}></input>
+		<input onChange={e => handleSearchInput(e.target.value)} value={searchString} required/>
 	)
 }

@@ -3,14 +3,14 @@ import {useSelector, useDispatch} from 'react-redux'
 
 import Post from '../components/Post';
 import { Loader } from '../components/Loader';
-import { sortAndFilter } from '../selectors/users';
+import { sortAndFilterFavourites } from '../selectors';
 import { useListObserver, useVideoObserver } from '../hooks';
-import { addFavourite, removeFavourite, changeCurrentPlay } from '../redux/actions';
+import { addFavourite, removeFavourite } from '../redux/actions';
 
 export const Favourites = () => {
 
-	const {userList, loading, viewType} = useSelector((state => ({
-			favourites: sortAndFilter(state),
+	const {favourites, loading, viewType} = useSelector((state => ({
+			favourites: sortAndFilterFavourites(state),
 			loading: state.app.loading,
 			viewType: state.app.viewType
 		})
@@ -24,12 +24,13 @@ export const Favourites = () => {
 		favourite || false ? dispatch(removeFavourite(data.id)) : dispatch(addFavourite({...data, favourite: true}));
 	}
 
+
 	useEffect(() => {
-		if(userList.length){
+		if(favourites.length){
 			observeList();
 			observeVideos();
 		}
-	}, [userList, observeList, observeVideos]);
+	}, [favourites, observeList, observeVideos]);
 
 
 	return (
@@ -38,7 +39,7 @@ export const Favourites = () => {
 				loading ?
 					<Loader/> :
 					<ul id={'main-data'} className={`main-data ${viewType}`}>
-						{userList.map((data, ind) => {
+						{favourites.map((data, ind) => {
 							return <Post key={data.id} data={data} ind={ind} viewType={viewType} toggleFavourite={toggleFavourite}/>
 						})}
 					</ul>

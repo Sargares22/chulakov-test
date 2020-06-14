@@ -6,6 +6,6 @@ export const HeaderFavourites = () => {
 
 	const isFavourites = useLocation().pathname.includes('favourites')
 
-	return <NavLink to={isFavourites ? '/' :'/favourites'} className="favourites__btn"><i className={`star ${isFavourites ? 'active': ''}`}></i></NavLink>
+	return <div  className="favourite__btn"> <NavLink to={isFavourites ? '/' :'/favourites'}><i className={`star ${isFavourites ? 'active': ''}`}></i></NavLink> </div> 
 	
 }

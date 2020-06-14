@@ -5,23 +5,29 @@ import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { createStore, compose, applyMiddleware} from 'redux';
 import { routerMiddleware, ConnectedRouter } from 'connected-react-router';
-import './utils/i18n';
+import './helpers/i18n';
 
 import App from './App';
 import rootReducer from './redux/reducer/index.js';
 import './index.sass';
-import urlSyncMiddleware from './middleware/syncUrl'
+import {syncUrl} from './middleware'
 
 export const history = createBrowserHistory();
 
-const store = createStore(rootReducer(history), compose(
+
+const composeEnhancers =
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+      })
+    : compose;
+
+const store = createStore(rootReducer(history), composeEnhancers(
 	applyMiddleware(
 		thunk,
-		urlSyncMiddleware,
+		syncUrl,
 		routerMiddleware(history),
-	), 
-		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-	))
+	)))
 
 
 	

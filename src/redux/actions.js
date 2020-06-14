@@ -1,5 +1,5 @@
 import data from '../assets/data'
-import { FETCH_DATA, DATA_LOADING, GRID_ROW_COUNTER, SORTING_BY, CHANGE_LANGUAGE, SEARCH_BY, CHANGE_DATA_DISPLAY, INIT_FAVOURITES, REMOVE_FAVOURITE, ADD_FAVOURITE, TOGGLE_FAVOURITE_PROPERTY, CHANGE_CURRENT_PLAY } from './types';
+import { FETCH_DATA, DATA_LOADING, GRID_ROW_COUNTER, SORTING_BY, CHANGE_LANGUAGE, SEARCH_BY, CHANGE_DATA_DISPLAY, INIT_FAVOURITES, REMOVE_FAVOURITE, ADD_FAVOURITE, TOGGLE_FAVOURITE_PROPERTY } from './types';
 
 const fetchedData = new Promise((resolve) => {
 	setTimeout(() => {
@@ -48,7 +48,7 @@ export const searchBy = string => {
 	return {
 		type: SEARCH_BY,
 		payload: {
-			searchedString: string
+			searchString: string
 		}
 	}
 }
@@ -72,12 +72,6 @@ export const removeFavourite = id => dispatch => {
 	dispatch(toggleFavouriteProperty(id, false))
 	dispatch({type: REMOVE_FAVOURITE,payload: id})
 	
-}
-export const changeCurrentPlay = id => {
-	return {
-		type: CHANGE_CURRENT_PLAY,
-		payload: id
-	}
 }
 
 export const fetchData = () => dispatch => {

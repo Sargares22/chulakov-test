@@ -3,7 +3,7 @@
 		"sorting": "Sorting",
         "view": "View",
         "language": "Language",
-        "favourites": "favorites",
+        "favourites": "Favorites",
 		"theme-picker": "Theme picker",
 		"search": "Search",
 		"sort_type": {
@@ -27,7 +27,8 @@
 			"year": "year",
 			"year1": "years",
 			"years": "years"
-		}
+		},
+		"empty": "Not found"
     }
 
 }

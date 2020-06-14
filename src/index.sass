@@ -1,78 +1,128 @@
+$accent: #e6e6e6
+$text: #000
 *
 	margin: 0
 	padding: 0
-button
-	background-color: unset
-	
+body
+	font-family: "Open Sans", sans-serif
+	color: $text
+	overflow-x: hidden
+	button
+		color: $text
+.background
+	position: fixed
+	top: 0
+	right: 0
+	left: 0
+	bottom: -200px
+	z-index: -1
+	background: linear-gradient(to bottom, lighten($accent, 10%), darken($accent, 25%))
+	background-size: cover
 .container
 	max-width: 1280px
 	margin: 0 auto
+	@media (max-width: 1305px)
+		margin: 0 5px
 
 header
-	margin-bottom: 40px
+	margin: 40px 0 40px
+	@media (max-width: 1024px)
+		margin: 5px 0 25px
 	.container
 		display: grid
-		// grid-template-columns: 1.5fr 1fr .3fr .3fr .5fr
-		grid-template-areas: "filters filters filters display display lang favourites picker" "filters filters filters display display search search search"
-
+		grid-template-columns: repeat(8, 1fr)
+		grid-template-areas: "filters filters filters display display lang lang favourites" "filters filters filters display display search search search"
 		grid-gap: 2%
+		@media (max-width: 1024px)
+			// grid-template-columns: repeat(6, 1fr)
+			grid-template-areas: "filters filters filters filters display display lang lang" "filters filters filters filters display display favourites favourites" "search search search search search search search search"
+			@media (max-width: 768px)
+				grid-template-columns: repeat(5, 1fr)
+				grid-template-areas: "filters filters filters filters filters" "search search search search search" "display display favourites lang lang " 
+
+
 		.filters, .display, .change-lang, .favourites, .theme-picker, .search
 			&__title
 				text-align: center
+				font-weight: bold
 				// text-decoration: 
 			.btn-group
 				display: grid
 				grid-template-columns: 1fr 1fr 1fr
 				grid-template-rows: 40px
-				margin-top: 20px
+				margin-top: 10px
+				@media (max-width: 768px)
+					grid-template-rows: 40px
 				&.sort, &.display, &.change-lang
 					grid-template-columns: 1fr 1fr
 				&.display
 					grid-template-rows: 100px
+					@media (max-width: 768px)
+						grid-template-rows: 40px
 				&.change-lang
 					.btn-group__item
 						display: grid
 						justify-content: center
 						align-items: center
-				&__item
-					border: 1px solid #000000
+				&__item, .favourites__btn
+					border: 1px solid darken($accent, 20%)
+					background-color: rgba(lighten($accent, 90%), .7)
 					text-transform: capitalize
+					transition: all .25s
+					font-size: 16px
+					&:first-of-type
+						border-radius: 10px 0 0 10px
+					&:last-of-type
+						border-radius: 0 10px 10px 0
 					&.active
-						background-color: #e6e6e6
+						border: 0 solid transparent
+						background-color: rgba(darken($accent, 3%), .6) 
+						box-shadow: inset 0px 0px 6px 0px darken($accent, 30%)
 					&:hover
-						background-color: #e9e9e9
+						background-color: darken($accent, 10%)
 					&:not(:last-child)
 						border-right: none
 		.favourites
 			display: grid
 			grid-template-rows: min-content 40px
-			grid-gap: 20px
-			.favourites__btn
-				border: 1px solid #000000
-				text-transform: capitalize
+			grid-gap: 10px
+			@media (max-width: 1024px)
+				// display: none
+				grid-gap: 0	
+			@media (max-width: 768px)	
+				grid-gap: 10px	
+			.favourite__btn
 				display: flex
 				justify-content: center
-				align-items: center
-				&.active
-					background-color: #e6e6e6
-				&:hover
-					background-color: #e9e9e9
-				&:not(:last-child)
-					border-right: none						
+				align-items: center	
+				.star		
+					transition: all .25s
+					border-bottom: .7em solid #000
+					&:before, &:after
+						border-bottom: .7em solid #000
+						transition: all .25s
+					&.active
+						border-bottom: .7em solid #ffc600
+						transition: all .25s
+						&:before, &:after
+							border-bottom: .7em solid #ffc600
+							transition: all .25s
 		.theme-picker
+			@media (max-width: 1024px)
+				display: none
 			.btn-group__item
 				position: relative
 				&.active
-					background-color: darken(#e6e6e6, 20%)
+					background-color: darken($accent, 20%)
 				&.grey
 					&:before
-						background-color: #e6e6e6
+						background-color: $accent
 				&.red
 					&:before
 						background-color: red
-				&.green
+				&.blue
 					&:before
-						background-color: green
+						background-color: blue
 				&:before
 					content: ''
 					position: absolute
@@ -82,12 +132,24 @@ header
 					right: 5px
 					border: 1px solid #000
 		.search
+			&__title
+				text-align: left
+				@media (max-width: 1024px)
+					text-align: center
+					margin-bottom: 10px
 			input
-				width: 100%
+				background-color: rgba(darken($accent, 3%), .6) 
+				width: calc(100% - 3px)
 				height: 30px
 				font-size: 22px
-				border: 1px solid #000000
-
+				padding-left: 4px
+				border-radius: 5px
+				border: 0 solid transparent
+				box-shadow: inset 0px 0px 6px 0px darken($accent, 30%)
+				transition: all .25s
+				&:focus, &:valid
+					box-shadow: 0px 0px 6px 0px darken($accent, 30%)
+					background-color: rgba(lighten($accent, 100%), .6) 
 		.filters
 			grid-area: filters
 		.display
@@ -103,8 +165,9 @@ header
 
 
 .main-data 
-	// overflow: hidden
 	margin-bottom: 40px
+	@media (max-width: 1024px)
+		margin-bottom: 15px
 	.main-data
 		&__text-block
 			font-size: 22px
@@ -112,10 +175,10 @@ header
 			display: grid
 		&__item
 			opacity: 0
+			transform: translateY(-40px)
 			&.fadeIn
-				animation: fadeIn 1s
+				animation: fadeIn .8s
 				animation-fill-mode: forwards
-				// animation-delay: 50ms
 
 		&__icon
 			height: 60px
@@ -131,9 +194,9 @@ header
 			&__video, &__phrase
 				display: none
 			&__item
-				background-color: #fafafa
+				background-color: rgba(lighten($accent, 100%), .5)
 				&:not(:last-child)
-					border-bottom: 1px solid #cecece
+					border-bottom: 1px solid darken($accent, 10%)
 			&__text-block
 				grid-template-columns: .3fr 1fr .7fr 1fr .2fr
 				align-items: center
@@ -142,14 +205,23 @@ header
 		display: grid
 		grid-template-columns: 1fr 1fr
 		grid-auto-rows: 350px
-		grid-gap: 20px
+		grid-gap: 15px
 		grid-auto-flow: dense
+		@media (max-width: 1024px)
+			grid-auto-rows: 300px
+		@media (max-width: 690px)
+			grid-auto-rows: 250px
+			grid-gap: 10px
+			
 		.main-data
 			&__item
+				background-color: rgba(lighten($accent, 100%), .5)
 				grid-template-columns: 1fr
 				box-shadow: 0px 2px 5px 1px grey
 				grid-column: auto / span 1
-				// overflow: hidden
+				overflow: hidden
+				@media (max-width: 550px)
+					grid-column: auto / span 2
 				.main-data
 					&__text-block
 						font-size: 22px
@@ -157,20 +229,32 @@ header
 						grid-template-areas: "icon name name star" "age age age age" "phone phone phone phone" "phrase phrase phrase ."
 						grid-template-columns: .7fr 2fr 2fr .5fr
 						align-items: center
+						@media (max-width: 1024px)
+							font-size: 18px
+							padding: 10px 15px 15px 20px
+						@media (max-width: 670px)
+							font-size: 16px
 				&.video
 					grid-template-columns: 1fr 1fr
 					grid-column: auto / span 2
+					@media (max-width: 690px)
+						grid-template-columns: 1fr
+						grid-template-rows: 1fr 1fr
+						grid-row-start: span 2
 					.main-data__video
 						display: block	
 						position: relative
-						box-shadow: -8px 0px 8px 0px #d0cece
+						box-shadow: -8px 0px 8px 0px darken($accent, 20%)
 						video
 							object-fit: fill
 							position: absolute
 							width: 100%
-							height: 100%			
-				&:nth-child(4)
-					background-color: #fff
+							height: 100%
+				&.fadeIn
+					.main-data
+						&__text-block, &__icon, &__name, &__age, &__phone, &__star, &__phrase, &__video
+							animation: fadeIn 1.5s
+							animation-fill-mode: forwards	
 			&__icon
 				grid-area: icon
 				margin: 0
@@ -178,7 +262,7 @@ header
 				grid-area: name
 			&__age
 				grid-area: age
-				color: #777777
+				color: darken($accent, 40%)
 			&__phone
 				grid-area: phone
 			&__star
@@ -188,54 +272,15 @@ header
 				grid-area: phrase
 
 
-		
-.post-enter, .post-appear, .post-exit-active
-	opacity: 0
-	// visibility: hidden
-	transform: translateY(-100px)
-	// z-index: 0
-	transition: all 500ms
-	// display: none
-	// transition-delay: 0.2s
-	
-.post-enter-active, .post-appear-active
-	opacity: 1
-	// visibility: hidden
-	transform: translateY(0)
-	transition: all 500ms
-.post-enter-done, .post-appear-done
-	// opacity: 1
-	// visibility: visible
-
-.block-enter
-	opacity: 0
-	visibility: hidden
-.block-enter-active
-	opacity: 1
-	visibility: hidden
-	transition: all 500ms
-.block-enter-done
-	visibility: visible
-
-
-
-// .post-exit
-// 	opacity: 1
-
-// .post-exit-active
-// 	opacity: 0
-// 	transition: opacity 100ms
-
-
-	
-
 //star
-
 .star
 	&.active
-		border-bottom: .7em solid #000
+		border-bottom: .7em solid #ffc600
+		transition: border-bottom .25s
 		&:before, &:after
-			border-bottom: .7em  solid #000
+			border-bottom: .7em  solid #ffc600
+			transition: border-bottom .25s
+
 	position: relative
 	display: inline-block
 	width: 0
@@ -244,58 +289,59 @@ header
 	margin-right: .7em
 	margin-bottom: 1em
 	border-right:  .3em solid transparent
-	border-bottom: .7em  solid #cccccc
+	border-bottom: .7em  solid darken($accent, 20%)
 	border-left:   .3em solid transparent
 	font-size: 13px
 	cursor: pointer
+
 	&:hover
-		border-bottom: .7em solid #444343
+		border-bottom: .7em solid darken($accent, 55%)
+		transition: border-bottom .25s
+
 		&:before, &:after
-			border-bottom: .7em  solid #444343
+			border-bottom: .7em solid darken($accent, 55%)
+			transition: border-bottom .25s
+
 	&:before, &:after
 		content: ''
-		
 		display: block
 		width: 0
 		height: 0
-		
 		position: absolute
 		top: .6em
 		left: -1em
-		
 		border-right:  1em solid transparent
-		border-bottom: .7em  solid #cccccc
+		border-bottom: .7em  solid darken($accent, 20%)
 		border-left:   1em solid transparent
-		
 		transform: rotate(-35deg)
 	
 	&:after  
 		transform: rotate(35deg)
 //spinner
 .spinner
+	opacity: 1
 	div
 		box-sizing: border-box !important
-
 	> div
 		position: absolute
-		width: 176px
-		height: 176px
-		top: 12px
-		left: 12px
+		width: 67.67px
+		height: 67.67px
+		top: 16.665px
+		left: 16.665px
 		border-radius: 50%
-		border: 16px solid #000
-		border-color: #e15b64 transparent #e15b64 transparent
-		animation: spinner 1s linear infinite
+		border: 5.05px solid #000
+		border-color: darken($accent, 50%) transparent darken($accent, 50%) transparent
+		animation: spinner 0.78125s linear infinite
 
 		&:nth-child(2), &:nth-child(4)
-			width: 140px
-			height: 140px
-			top: 30px
-			left: 30px
-			animation: spinner 1s linear infinite reverse
+			width: 55.55px
+			height: 55.55px
+			top: 22.725px
+			left: 22.725px
+			animation: spinner 0.78125s linear infinite reverse
 
 		&:nth-child(2)
-			border-color: transparent #f8b26a transparent #f8b26a
+			border-color: transparent darken($accent, 30%) transparent darken($accent, 30%)
 
 		&:nth-child(3)
 			border-color: transparent
@@ -310,28 +356,28 @@ header
 					content: ""
 					display: block
 					position: absolute
-					width: 16px
-					height: 16px
-					top: -16px
-					left: 64px
-					background: #e15b64
+					width: 5.05px
+					height: 5.05px
+					top: -5.05px
+					left: 26.26px
+					background: darken($accent, 50%)
 					border-radius: 50%
-					box-shadow: 0 160px 0 0 #e15b64
+					box-shadow: 0 62.62px 0 0 darken($accent, 50%)
 
 				&:after
 					content: ""
 					display: block
 					position: absolute
-					width: 16px
-					height: 16px
-					top: -16px
-					left: 64px
-					background: #e15b64
+					width: 5.05px
+					height: 5.05px
+					top: -5.05px
+					left: 26.26px
+					background: darken($accent, 50%)
 					border-radius: 50%
-					box-shadow: 0 160px 0 0 #e15b64
-					left: -16px
-					top: 64px
-					box-shadow: 160px 0 0 0 #e15b64
+					box-shadow: 0 62.62px 0 0 darken($accent, 50%)
+					left: -5.05px
+					top: 26.26px
+					box-shadow: 62.62px 0 0 0 darken($accent, 50%)
 
 		&:nth-child(4)
 			border-color: transparent
@@ -346,34 +392,34 @@ header
 					content: ""
 					display: block
 					position: absolute
-					width: 16px
-					height: 16px
-					top: -16px
-					left: 46px
-					background: #f8b26a
+					width: 5.05px
+					height: 5.05px
+					top: -5.05px
+					left: 20.2px
+					background: darken($accent, 30%)
 					border-radius: 50%
-					box-shadow: 0 124px 0 0 #f8b26a
-	
+					box-shadow: 0 50.5px 0 0 darken($accent, 30%)
+
 				&:after
 					content: ""
 					display: block
 					position: absolute
-					width: 16px
-					height: 16px
-					top: -16px
-					left: 46px
-					background: #f8b26a
+					width: 5.05px
+					height: 5.05px
+					top: -5.05px
+					left: 20.2px
+					background: darken($accent, 30%)
 					border-radius: 50%
-					box-shadow: 0 124px 0 0 #f8b26a
-					left: -16px
-					top: 46px
-					box-shadow: 124px 0 0 0 #f8b26a
+					box-shadow: 0 50.5px 0 0 darken($accent, 30%)
+					left: -5.05px
+					top: 20.2px
+					box-shadow: 50.5px 0 0 0 darken($accent, 30%)
 .spinner-second
-	width: 200px
-	height: 200px
+	width: 101px
+	height: 101px
 	display: block
 	overflow: hidden
-	background: #ffffff
+	background: none
 	margin: 0 auto
 .spinner
 	width: 100%
@@ -384,6 +430,7 @@ header
 	transform-origin: 0 0
 	div
 		box-sizing: content-box
+	
 @keyframes spinner
 	0%
 		transform: rotate(0)
@@ -393,12 +440,6 @@ header
 	0%
 		opacity: 00
 		transform: translateY(-40px)
-	// 50%
-	// 	opacity: 0
-	// 	transform: translateY(-20px)
-	// 75%
-	// 	opacity: 0.5
-	// 	transform: translateY(-10px)
 	100%
 		opacity: 1
 		transform: translateY(0)

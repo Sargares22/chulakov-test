@@ -1,10 +1,11 @@
 import { push } from 'connected-react-router';
 import { SEARCH_BY, CHANGE_DATA_DISPLAY, SORTING_BY } from '../redux/types';
 
-export default store => next => action => {
+export const syncUrl = store => next => action => {
     if (action.type ===  SEARCH_BY || action.type === CHANGE_DATA_DISPLAY || action.type === SORTING_BY) {
 		
-        const state = store.getState();
+		const state = store.getState();
+		
 		const currentQueries = new URLSearchParams(state.router.location.search);
 		
 		if(!Object.values(action.payload)[0]){

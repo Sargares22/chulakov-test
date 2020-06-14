@@ -1,10 +1,10 @@
 import { GRID_ROW_COUNTER, SORTING_BY, CHANGE_LANGUAGE, SEARCH_BY, CHANGE_DATA_DISPLAY} from "../types";
-import { getValueFromUrl } from "../../utils/functions";
+import { getValueFromUrl } from "../../helpers/functions";
 
 const sortingType = getValueFromUrl('sortingType')
 const sortingOrder = getValueFromUrl('sortingOrder')
 const viewType = getValueFromUrl('viewType')
-const searchedString = getValueFromUrl('searchedString')
+const searchString = getValueFromUrl('searchString')
 
 
 const initState = {
@@ -15,7 +15,7 @@ const initState = {
 	},
 	language: 'ru',
 	gridRow: -1,
-	searchedString: searchedString ? searchedString : '',
+	searchString: searchString ? searchString : '',
 }
 
 export const app = (state = initState, action) => {
@@ -23,7 +23,7 @@ export const app = (state = initState, action) => {
 
 
 		case SEARCH_BY:
-			return {...state, searchedString: action.payload.searchedString}
+			return {...state, searchString: action.payload.searchString}
 			
 		case CHANGE_LANGUAGE:
 			return {...state, language: action.payload}
