@@ -30,7 +30,7 @@ export default React.memo(({data, viewType, ind, toggleFavourite}) => {
 					<div className="main-data__name">{name}</div>
 					<div className="main-data__age">{age} {t(`main.age_type.${translateAge(age)}`)}</div>
 					<div className="main-data__phone">{phone}</div>
-					<div className="main-data__star " onClick={() => toggleFavourite(data, favourite)}><i className={`star ${favourite ? 'active': ''}`}></i></div>
+					<div className="main-data__star "><i  onClick={() => toggleFavourite(data, favourite)} className={`star ${favourite ? 'active': ''}`}></i></div>
 					<div className="main-data__phrase">{phrase}</div>
 				</div>
 

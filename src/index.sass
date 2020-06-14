@@ -40,7 +40,6 @@ header
 				grid-template-columns: repeat(5, 1fr)
 				grid-template-areas: "filters filters filters filters filters" "search search search search search" "display display favourites lang lang " 
 
-
 		.filters, .display, .change-lang, .favourites, .theme-picker, .search
 			&__title
 				text-align: center
@@ -185,6 +184,9 @@ header
 			width: 60px
 			border-radius: 50%
 			margin: 0 auto	
+			@media (max-width: 650px)
+				width: 45px
+				height: 45px
 	&::-webkit-scrollbar 
 		width: 0px
 		background: transparent	
@@ -201,6 +203,27 @@ header
 				grid-template-columns: .3fr 1fr .7fr 1fr .2fr
 				align-items: center
 				padding: 20px 0 20px
+				@media (max-width: 650px)
+					font-size: 20px
+					grid-template-columns: repeat(8, 1fr) 
+					grid-template-rows: 1fr 1fr
+					grid-template-areas: "icon icon name name name name star star" "icon icon phone phone phone phone age age"	
+					.main-data			
+						&__icon
+							grid-area: icon
+						&__name
+							grid-area: name
+							margin: 0 auto
+						&__phone
+							grid-area: phone
+							color: lighten($text, 50%)
+							margin: 0 auto
+						&__age
+							grid-area: age
+							margin: 0 auto
+						&__star
+							grid-area: star
+							margin: 0 auto
 	&.preview
 		display: grid
 		grid-template-columns: 1fr 1fr
