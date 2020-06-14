@@ -1,5 +1,6 @@
 import Fuse from "fuse.js";
 
+export const basePath = true ? '/chulakov-test': ''
 
 export const getValueFromUrl = text => new URLSearchParams(window.location.search).get(text);
 
