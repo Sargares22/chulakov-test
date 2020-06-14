@@ -19,7 +19,7 @@ export default React.memo(({data, viewType, ind, toggleFavourite}) => {
 			>
 				<div className="main-data__text-block">
 					<div className="main-data__icon">
-						<img src={`/images/${image}.svg`} alt="image" />
+						<img src={`/images/${image}.svg`} alt={image} />
 					</div>
 					<div className="main-data__name">{name}</div>
 					<div className="main-data__age">{age} {t(`main.age_type.${translateAge(age)}`)}</div>

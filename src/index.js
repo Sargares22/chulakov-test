@@ -17,9 +17,7 @@ export const history = createBrowserHistory();
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-      })
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
 const store = createStore(rootReducer(history), composeEnhancers(
@@ -29,14 +27,10 @@ const store = createStore(rootReducer(history), composeEnhancers(
 		routerMiddleware(history),
 	)))
 
-
-	
-	
-
 const app = (
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
-			<App />
+			<App/>
 		</ConnectedRouter>
 	</Provider>
 

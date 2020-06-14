@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 import {useDispatch} from 'react-redux'
 
 import { Header } from './containers/Header';
@@ -16,6 +16,7 @@ function App() {
 	}, [dispatch]);
 
 
+
 	return (
 		<>
 			<Header />
@@ -23,14 +24,14 @@ function App() {
 				<Switch>
 					<Route
 						exact 
-						path="/" 
-						render={({location}) => <Users/>}
-						// component={FetchedData} 
+						path={"/"} 
+						// render={() => <Users />}
+						component={Users} 
 						/>
 					<Route 
 						path="/favourites"
-						render={() => <Favourites />}
-						// component={Favourites} 
+						// render={() => <Favourites />}
+						component={Favourites} 
 					/>
 				</Switch>
 			</div>
